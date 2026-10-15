@@ -1,9 +1,0 @@
-# Copy this file to terraform.tfvars and fill in your Cloudflare credentials
-# DO NOT commit terraform.tfvars to git!
-
-cloudflare_api_token  = "your-cloudflare-api-token-here"
-cloudflare_account_id = "your-cloudflare-account-id-here"
-worker_name           = "student-task-manager"
-kv_namespace_name     = "student_tasks"
-environment           = "dev"
-workers_subdomain     = "your-workers-subdomain"

@@ -23,12 +23,5 @@ resource "cloudflare_workers_script" "task_manager" {
   }
 }
 
-# 3. Automatically ensure public workers.dev route is enabled on deploy
-resource "terraform_data" "enable_workers_dev" {
-  input = cloudflare_workers_script.task_manager.name
-
-  provisioner "local-exec" {
-    interpreter = ["powershell", "-NoProfile", "-Command"]
-    command     = "Invoke-RestMethod -Uri 'https://api.cloudflare.com/client/v4/accounts/${var.cloudflare_account_id}/workers/scripts/${cloudflare_workers_script.task_manager.name}/subdomain' -Method Post -Headers @{ Authorization = 'Bearer ${var.cloudflare_api_token}'; 'Content-Type' = 'application/json' } -Body '{\"enabled\": true}'"
-  }
-}
+# Note: workers.dev subdomain is enabled by default on Cloudflare
+# No additional configuration needed
